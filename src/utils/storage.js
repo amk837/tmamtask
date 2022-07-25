@@ -6,6 +6,11 @@ export const saveIntoStorage = (key, data) => {
 };
 
 export const loadFromStorage = async (key) => {
-  const { data } = JSON.parse(await AsyncStorage.getItem(key));
-  return data;
+  try {
+    const { data } = JSON.parse(await AsyncStorage.getItem(key));
+    return data;
+  } catch (err) {
+    // do nothing
+  }
+  return null;
 };
